@@ -1,4 +1,4 @@
-// BBC Veterinary Clinic - Health Records Module
+// PetSmart Veterinary Clinic - Health Records Module
 
 // Render health records page
 function renderHealthRecordsPage() {
@@ -505,12 +505,12 @@ function handleAddHealthRecord(event) {
     // Add to the owner's health records
     const ownerHealthRecords = JSON.parse(
         localStorage.getItem(
-            `bbc_clinic_health_records_${selectedPet.ownerId}`
+            `PetSmart_clinic_health_records_${selectedPet.ownerId}`
         ) || "[]"
     );
     ownerHealthRecords.push(healthRecordData);
     localStorage.setItem(
-        `bbc_clinic_health_records_${selectedPet.ownerId}`,
+        `PetSmart_clinic_health_records_${selectedPet.ownerId}`,
         JSON.stringify(ownerHealthRecords)
     );
 
@@ -589,7 +589,7 @@ function downloadHealthRecordsPDF() {
 
     // Add title
     doc.setFontSize(20);
-    doc.text("BBC Veterinary Clinic", 20, 20);
+    doc.text("PetSmart Veterinary Clinic", 20, 20);
     doc.setFontSize(16);
     doc.text("Health Records Report", 20, 30);
 
@@ -638,7 +638,7 @@ function downloadHealthRecordsPDF() {
 
     // Save the PDF
     doc.save(
-        `BBC_Health_Records_${AppState.currentUser.lastName}_${
+        `PetSmart_Health_Records_${AppState.currentUser.lastName}_${
             new Date().toISOString().split("T")[0]
         }.pdf`
     );
@@ -802,7 +802,7 @@ function handleEditHealthRecord(recordId) {
         if (record) {
             const ownerRecords = JSON.parse(
                 localStorage.getItem(
-                    `bbc_clinic_health_records_${record.ownerId}`
+                    `PetSmart_clinic_health_records_${record.ownerId}`
                 ) || "[]"
             );
             const index = ownerRecords.findIndex((rec) => rec.id === recordId);
@@ -821,7 +821,7 @@ function handleEditHealthRecord(recordId) {
                     nextVisit,
                 };
                 localStorage.setItem(
-                    `bbc_clinic_health_records_${record.ownerId}`,
+                    `PetSmart_clinic_health_records_${record.ownerId}`,
                     JSON.stringify(ownerRecords)
                 );
             }
@@ -874,7 +874,7 @@ function getAllHealthRecords() {
 
     usersList.forEach((user) => {
         const userHealthRecords = JSON.parse(
-            localStorage.getItem(`bbc_clinic_health_records_${user.id}`) || "[]"
+            localStorage.getItem(`PetSmart_clinic_health_records_${user.id}`) || "[]"
         );
         allHealthRecords.push(...userHealthRecords);
     });

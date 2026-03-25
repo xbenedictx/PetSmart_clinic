@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>BBC Pet Clinic – Editable Invoice</title>
+  <title>PetSmart Pet Clinic – Editable Invoice</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Google Fonts -->
@@ -94,9 +94,9 @@
 
   <!-- ==================== HEADER ==================== -->
   <div class="header">
-    <div class="logo" contenteditable="true" id="logoText">BBC</div>
+    <div class="logo" contenteditable="true" id="logoText">PetSmart</div>
     <div class="company">
-      <h1 contenteditable="true" id="clinicName">BBC Pet Clinic</h1>
+      <h1 contenteditable="true" id="clinicName">PetSmart Pet Clinic</h1>
       <div contenteditable="true" id="clinicAddr"><span class="placeholder">&lt;Address&gt;</span><br>
         <span class="placeholder">&lt;City, State, ZIP&gt;</span><br>
         <span class="placeholder">&lt;Phone&gt;</span><br>
@@ -264,8 +264,8 @@ function collectData(){
   };
 }
 function populate(data){
-  $('#logoText').innerText = data.logo||'BBC';
-  $('#clinicName').innerText = data.clinicName||'BBC Pet Clinic';
+  $('#logoText').innerText = data.logo||'PetSmart';
+  $('#clinicName').innerText = data.clinicName||'PetSmart Pet Clinic';
   $('#clinicAddr').innerHTML = data.clinicAddr||'&lt;Address&gt;<br>&lt;City, State, ZIP&gt;<br>&lt;Phone&gt;<br>&lt;Email&gt;';
   $('#invDate').value = data.invDate||'';
   $('#invNo').value = data.invNo||'';
@@ -293,7 +293,7 @@ function populate(data){
 /* ──────────────────────  Buttons  ────────────────────── */
 $('#saveInvoice').addEventListener('click',()=>{
   const data = collectData();
-  localStorage.setItem('bbcInvoice', JSON.stringify(data));
+  localStorage.setItem('PetSmartInvoice', JSON.stringify(data));
   alert('Invoice saved! (stored in your browser)');
 });
 $('#printInvoice').addEventListener('click',()=>window.print());
@@ -302,8 +302,8 @@ $('#printInvoice').addEventListener('click',()=>window.print());
 $('#discount,#taxRate,#shipping').addEventListener('input',recalcAll);
 
 /* ──────────────────────  Load on start  ────────────────────── */
-if(localStorage.getItem('bbcInvoice')){
-  try{ populate(JSON.parse(localStorage.getItem('bbcInvoice'))); }
+if(localStorage.getItem('PetSmartInvoice')){
+  try{ populate(JSON.parse(localStorage.getItem('PetSmartInvoice'))); }
   catch(e){ console.warn('Could not load saved invoice',e); }
 } else {
   // start with one empty row

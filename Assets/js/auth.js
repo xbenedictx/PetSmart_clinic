@@ -1,4 +1,4 @@
-// BBC Veterinary Clinic - Authentication Module
+// PetSmart Veterinary Clinic - Authentication Module
 
 // Login form handler
 document.addEventListener('DOMContentLoaded', function() {
@@ -73,7 +73,7 @@ function authenticateUser(email, password, userType) {
     
     if (userType === 'admin') {
         // Check admin credentials
-        const adminUser = localStorage.getItem('bbc_clinic_admin');
+        const adminUser = localStorage.getItem('PetSmart_clinic_admin');
         if (adminUser) {
             const admin = JSON.parse(adminUser);
             if (admin.email === email && admin.password === password) {
@@ -84,7 +84,7 @@ function authenticateUser(email, password, userType) {
         // Check regular user credentials
         // For demo, check demo user
         if (email === 'demo@example.com' && password === 'demo123') {
-            user = JSON.parse(localStorage.getItem('bbc_clinic_user_demo'));
+            user = JSON.parse(localStorage.getItem('PetSmart_clinic_user_demo'));
         } else {
             // Check all registered users
             user = findUserByCredentials(email, password);
@@ -98,7 +98,7 @@ function authenticateUser(email, password, userType) {
         AppState.userType = user.type;
         
         // Save to localStorage
-        localStorage.setItem('bbc_clinic_user', JSON.stringify(user));
+        localStorage.setItem('PetSmart_clinic_user', JSON.stringify(user));
         
         // Update navigation
         updateNavigation();
@@ -132,7 +132,7 @@ function createUser(firstName, lastName, email, phone, address, password) {
     };
     
     // Save user to localStorage
-    localStorage.setItem(`bbc_clinic_user_${userId}`, JSON.stringify(newUser));
+    localStorage.setItem(`PetSmart_clinic_user_${userId}`, JSON.stringify(newUser));
     
     // Add to users list
     const usersList = getUsersList();
@@ -141,7 +141,7 @@ function createUser(firstName, lastName, email, phone, address, password) {
         email: email,
         name: `${firstName} ${lastName}`
     });
-    localStorage.setItem('bbc_clinic_users_list', JSON.stringify(usersList));
+    localStorage.setItem('PetSmart_clinic_users_list', JSON.stringify(usersList));
     
     showAlert('Account created successfully! Please login.', 'success');
     showLogin();
@@ -155,7 +155,7 @@ function createUser(firstName, lastName, email, phone, address, password) {
 // Check if user exists
 function userExists(email) {
     // Check admin
-    const adminUser = localStorage.getItem('bbc_clinic_admin');
+    const adminUser = localStorage.getItem('PetSmart_clinic_admin');
     if (adminUser) {
         const admin = JSON.parse(adminUser);
         if (admin.email === email) return true;
@@ -175,7 +175,7 @@ function findUserByCredentials(email, password) {
     const userRef = usersList.find(user => user.email === email);
     
     if (userRef) {
-        const userData = localStorage.getItem(`bbc_clinic_user_${userRef.id}`);
+        const userData = localStorage.getItem(`PetSmart_clinic_user_${userRef.id}`);
         if (userData) {
             const user = JSON.parse(userData);
             if (user.password === password) {
@@ -189,7 +189,7 @@ function findUserByCredentials(email, password) {
 
 // Get users list
 function getUsersList() {
-    const usersList = localStorage.getItem('bbc_clinic_users_list');
+    const usersList = localStorage.getItem('PetSmart_clinic_users_list');
     return usersList ? JSON.parse(usersList) : [];
 }
 
@@ -208,7 +208,7 @@ function loginAsDemo() {
 }
 
 function loginAsAdmin() {
-    document.getElementById('login-email').value = 'admin@bbcclinic.com';
+    document.getElementById('login-email').value = 'admin@PetSmartclinic.com';
     document.getElementById('login-password').value = 'admin123';
     document.querySelector('input[value="admin"]').checked = true;
     handleLogin(new Event('submit'));

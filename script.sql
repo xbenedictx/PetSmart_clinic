@@ -1,8 +1,8 @@
--- BBC Veterinary Clinic Database Schema
+-- PetSmart Veterinary Clinic Database Schema
 -- MySQL Database Design for Production System
 
-CREATE DATABASE IF NOT EXISTS bbc_clinic_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE bbc_clinic_db;
+CREATE DATABASE IF NOT EXISTS PetSmart_clinic_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE PetSmart_clinic_db;
 
 -- =====================================================
 -- User Management Tables
@@ -568,10 +568,10 @@ INSERT INTO services (service_name, service_code, category, base_price) VALUES
 
 -- Insert default clinic settings
 INSERT INTO clinic_settings (setting_name, setting_value, setting_type, description, is_system) VALUES
-('clinic_name', 'BBC Veterinary Clinic', 'text', 'Clinic name for invoices and communications', FALSE),
+('clinic_name', 'PetSmart Veterinary Clinic', 'text', 'Clinic name for invoices and communications', FALSE),
 ('clinic_address', '123 Veterinary Lane, Pet City, PC 12345', 'text', 'Clinic address', FALSE),
 ('clinic_phone', '+1-555-0123', 'text', 'Main clinic phone number', FALSE),
-('clinic_email', 'info@bbcclinic.com', 'text', 'Main clinic email address', FALSE),
+('clinic_email', 'info@PetSmartclinic.com', 'text', 'Main clinic email address', FALSE),
 ('appointment_duration_default', '30', 'number', 'Default appointment duration in minutes', FALSE),
 ('appointment_reminder_days', '1', 'number', 'Days before appointment to send reminder', FALSE),
 ('working_hours_start', '08:00', 'text', 'Clinic opening time', FALSE),
@@ -580,7 +580,7 @@ INSERT INTO clinic_settings (setting_name, setting_value, setting_type, descript
 
 -- Create default admin user (password should be hashed in real implementation)
 INSERT INTO users (email, password_hash, user_type, first_name, last_name, phone, address) VALUES
-('admin@bbcclinic.com', '$2y$10$example_hash_here', 'admin', 'Dr. Sarah', 'Johnson', '+1-555-0123', '123 Veterinary Lane, Pet City, PC 12345');
+('admin@PetSmartclinic.com', '$2y$10$example_hash_here', 'admin', 'Dr. Sarah', 'Johnson', '+1-555-0123', '123 Veterinary Lane, Pet City, PC 12345');
 
 -- Insert admin profile
 INSERT INTO admin_profiles (user_id, license_number, specialization, is_veterinarian) VALUES
@@ -684,12 +684,12 @@ CREATE INDEX idx_users_type_active ON users(user_type, is_active);
 -- =====================================================
 
 -- Grant permissions (adjust as needed for your environment)
--- GRANT SELECT, INSERT, UPDATE, DELETE ON bbc_clinic_db.* TO 'bbc_app_user'@'localhost';
--- GRANT EXECUTE ON bbc_clinic_db.* TO 'bbc_app_user'@'localhost';
+-- GRANT SELECT, INSERT, UPDATE, DELETE ON PetSmart_clinic_db.* TO 'PetSmart_app_user'@'localhost';
+-- GRANT EXECUTE ON PetSmart_clinic_db.* TO 'PetSmart_app_user'@'localhost';
 
 -- Show database information
-SELECT 'BBC Veterinary Clinic Database Schema Created Successfully!' as Status;
-SELECT COUNT(*) as 'Total Tables' FROM information_schema.tables WHERE table_schema = 'bbc_clinic_db';
-SELECT COUNT(*) as 'Total Stored Procedures' FROM information_schema.routines WHERE routine_schema = 'bbc_clinic_db' AND routine_type = 'PROCEDURE';
-SELECT COUNT(*) as 'Total Functions' FROM information_schema.routines WHERE routine_schema = 'bbc_clinic_db' AND routine_type = 'FUNCTION';
-SELECT COUNT(*) as 'Total Views' FROM information_schema.views WHERE table_schema = 'bbc_clinic_db';
+SELECT 'PetSmart Veterinary Clinic Database Schema Created Successfully!' as Status;
+SELECT COUNT(*) as 'Total Tables' FROM information_schema.tables WHERE table_schema = 'PetSmart_clinic_db';
+SELECT COUNT(*) as 'Total Stored Procedures' FROM information_schema.routines WHERE routine_schema = 'PetSmart_clinic_db' AND routine_type = 'PROCEDURE';
+SELECT COUNT(*) as 'Total Functions' FROM information_schema.routines WHERE routine_schema = 'PetSmart_clinic_db' AND routine_type = 'FUNCTION';
+SELECT COUNT(*) as 'Total Views' FROM information_schema.views WHERE table_schema = 'PetSmart_clinic_db';

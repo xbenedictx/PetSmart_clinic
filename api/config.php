@@ -6,7 +6,7 @@ header('Access-Control-Allow-Headers: Content-Type,Authorization');
 
 try {
     $pdo = new PDO(
-        'mysql:host=localhost;dbname=bbc_clinic_db;charset=utf8mb4',
+        'mysql:host=localhost;dbname=PetSmart_clinic_db;charset=utf8mb4',
         'root',
         '',
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]

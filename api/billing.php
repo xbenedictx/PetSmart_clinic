@@ -57,7 +57,7 @@ if ($method === 'POST') {
     $data['total_amount'] = $subtotal;
     $data['balance_due'] = $subtotal;
     $data['status'] = 'pending';
-    $data['invoice_number'] = 'BBC-' . date('Y') . '-' . str_pad($pdo->query("SELECT COUNT(*)+1 FROM invoices WHERE YEAR(invoice_date)=YEAR(CURDATE())")->fetchColumn(), 4, '0', STR_PAD_LEFT);
+    $data['invoice_number'] = 'PetSmart-' . date('Y') . '-' . str_pad($pdo->query("SELECT COUNT(*)+1 FROM invoices WHERE YEAR(invoice_date)=YEAR(CURDATE())")->fetchColumn(), 4, '0', STR_PAD_LEFT);
 
     $cols = ['client_id','pet_id','invoice_date','invoice_number','subtotal','total_amount','balance_due','status','services'];
     $placeholders = array_map(fn($c)=>":$c", $cols);

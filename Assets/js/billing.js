@@ -1,4 +1,4 @@
-// BBC Veterinary Clinic - Billing Module
+// PetSmart Veterinary Clinic - Billing Module
 
 // Render billing page
 function renderBillingPage() {
@@ -606,7 +606,7 @@ function loadClientPets() {
 
     if (clientId) {
         const clientPets = JSON.parse(
-            localStorage.getItem(`bbc_clinic_pets_${clientId}`) || "[]"
+            localStorage.getItem(`PetSmart_clinic_pets_${clientId}`) || "[]"
         );
         clientPets.forEach((pet) => {
             const option = document.createElement("option");
@@ -691,7 +691,7 @@ function saveInvoices() {
 
     // Save to the current user's invoice storage
     localStorage.setItem(
-        `bbc_clinic_invoices_${AppState.currentUser.id}`,
+        `PetSmart_clinic_invoices_${AppState.currentUser.id}`,
         JSON.stringify(AppState.invoices)
     );
 }
@@ -702,8 +702,8 @@ function getAllClients() {
         const key = localStorage.key(i);
         if (
             key &&
-            key.startsWith("bbc_clinic_user_") &&
-            key !== "bbc_clinic_user"
+            key.startsWith("PetSmart_clinic_user_") &&
+            key !== "PetSmart_clinic_user"
         ) {
             const user = JSON.parse(localStorage.getItem(key));
             if (user.type !== "admin") {
@@ -717,7 +717,7 @@ function getAllClients() {
         }
     }
     // Also check the main admin account storage
-    const adminData = localStorage.getItem("bbc_clinic_admin");
+    const adminData = localStorage.getItem("PetSmart_clinic_admin");
     if (adminData) {
         // Admin might have a clients list
     }
@@ -730,7 +730,7 @@ function getAllInvoices() {
         const allInvoices = [];
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
-            if (key && key.startsWith("bbc_clinic_invoices_")) {
+            if (key && key.startsWith("PetSmart_clinic_invoices_")) {
                 const invoices = JSON.parse(localStorage.getItem(key));
                 allInvoices.push(...invoices);
             }
@@ -753,7 +753,7 @@ function handleCreateInvoice(event) {
     // Get client and pet info
     const client = getAllClients().find((c) => c.id === clientId);
     const clientPets = JSON.parse(
-        localStorage.getItem(`bbc_clinic_pets_${clientId}`) || "[]"
+        localStorage.getItem(`PetSmart_clinic_pets_${clientId}`) || "[]"
     );
     const pet = clientPets.find((p) => p.id === petId);
 
@@ -793,7 +793,7 @@ function handleCreateInvoice(event) {
     const total = subtotal;
 
     // Generate invoice number
-    const invoiceNumber = `BBC-${new Date().getFullYear()}-${String(
+    const invoiceNumber = `PetSmart-${new Date().getFullYear()}-${String(
         Date.now()
     ).slice(-6)}`;
 
@@ -878,7 +878,7 @@ function markInvoicePaid(invoiceId) {
     // Find the invoice across all users
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        if (key && key.startsWith("bbc_clinic_invoices_")) {
+        if (key && key.startsWith("PetSmart_clinic_invoices_")) {
             const invoices = JSON.parse(localStorage.getItem(key));
             const invoice = invoices.find((inv) => inv.id === invoiceId);
 

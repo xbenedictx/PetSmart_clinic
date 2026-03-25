@@ -1,4 +1,4 @@
-// BBC Veterinary Clinic - Main Application JavaScript
+// PetSmart Veterinary Clinic - Main Application JavaScript
 
 // Global App State
 const AppState = {
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Check authentication status
 function checkAuthStatus() {
-    const savedUser = localStorage.getItem("bbc_clinic_user");
+    const savedUser = localStorage.getItem("PetSmart_clinic_user");
     if (savedUser) {
         AppState.currentUser = JSON.parse(savedUser);
         AppState.isLoggedIn = true;
@@ -141,11 +141,11 @@ function logout() {
     AppState.healthRecords = [];
     AppState.invoices = [];
 
-    localStorage.removeItem("bbc_clinic_user");
-    localStorage.removeItem("bbc_clinic_pets");
-    localStorage.removeItem("bbc_clinic_appointments");
-    localStorage.removeItem("bbc_clinic_health_records");
-    localStorage.removeItem("bbc_clinic_invoices");
+    localStorage.removeItem("PetSmart_clinic_user");
+    localStorage.removeItem("PetSmart_clinic_pets");
+    localStorage.removeItem("PetSmart_clinic_appointments");
+    localStorage.removeItem("PetSmart_clinic_health_records");
+    localStorage.removeItem("PetSmart_clinic_invoices");
 
     updateNavigation();
     showLogin();
@@ -157,28 +157,28 @@ function loadUserData() {
     if (!AppState.currentUser) return;
 
     const savedPets = localStorage.getItem(
-        `bbc_clinic_pets_${AppState.currentUser.id}`
+        `PetSmart_clinic_pets_${AppState.currentUser.id}`
     );
     if (savedPets) {
         AppState.pets = JSON.parse(savedPets);
     }
 
     const savedAppointments = localStorage.getItem(
-        `bbc_clinic_appointments_${AppState.currentUser.id}`
+        `PetSmart_clinic_appointments_${AppState.currentUser.id}`
     );
     if (savedAppointments) {
         AppState.appointments = JSON.parse(savedAppointments);
     }
 
     const savedHealthRecords = localStorage.getItem(
-        `bbc_clinic_health_records_${AppState.currentUser.id}`
+        `PetSmart_clinic_health_records_${AppState.currentUser.id}`
     );
     if (savedHealthRecords) {
         AppState.healthRecords = JSON.parse(savedHealthRecords);
     }
 
     const savedInvoices = localStorage.getItem(
-        `bbc_clinic_invoices_${AppState.currentUser.id}`
+        `PetSmart_clinic_invoices_${AppState.currentUser.id}`
     );
     if (savedInvoices) {
         AppState.invoices = JSON.parse(savedInvoices);
@@ -195,19 +195,19 @@ function saveUserData() {
     if (!AppState.currentUser) return;
 
     localStorage.setItem(
-        `bbc_clinic_pets_${AppState.currentUser.id}`,
+        `PetSmart_clinic_pets_${AppState.currentUser.id}`,
         JSON.stringify(AppState.pets)
     );
     localStorage.setItem(
-        `bbc_clinic_appointments_${AppState.currentUser.id}`,
+        `PetSmart_clinic_appointments_${AppState.currentUser.id}`,
         JSON.stringify(AppState.appointments)
     );
     localStorage.setItem(
-        `bbc_clinic_health_records_${AppState.currentUser.id}`,
+        `PetSmart_clinic_health_records_${AppState.currentUser.id}`,
         JSON.stringify(AppState.healthRecords)
     );
     localStorage.setItem(
-        `bbc_clinic_invoices_${AppState.currentUser.id}`,
+        `PetSmart_clinic_invoices_${AppState.currentUser.id}`,
         JSON.stringify(AppState.invoices)
     );
 }
@@ -216,7 +216,7 @@ function saveUserData() {
 function loadAdminData() {
     // This would typically load all clients, pets, appointments, etc.
     // For demo purposes, we'll load sample data
-    const savedClients = localStorage.getItem("bbc_clinic_all_clients");
+    const savedClients = localStorage.getItem("PetSmart_clinic_all_clients");
     if (savedClients) {
         AppState.clients = JSON.parse(savedClients);
     }
@@ -225,11 +225,11 @@ function loadAdminData() {
 // Initialize sample data for demo
 function initializeSampleData() {
     // Sample admin user
-    const adminExists = localStorage.getItem("bbc_clinic_admin");
+    const adminExists = localStorage.getItem("PetSmart_clinic_admin");
     if (!adminExists) {
         const adminUser = {
             id: "admin_001",
-            email: "admin@bbcclinic.com",
+            email: "admin@PetSmartclinic.com",
             password: "admin123",
             firstName: "Dr. Sarah",
             lastName: "Johnson",
@@ -240,11 +240,11 @@ function initializeSampleData() {
             license: "VET-12345",
             createdAt: new Date().toISOString(),
         };
-        localStorage.setItem("bbc_clinic_admin", JSON.stringify(adminUser));
+        localStorage.setItem("PetSmart_clinic_admin", JSON.stringify(adminUser));
     }
 
     // Sample regular user
-    const userExists = localStorage.getItem("bbc_clinic_user_demo");
+    const userExists = localStorage.getItem("PetSmart_clinic_user_demo");
     if (!userExists) {
         const demoUser = {
             id: "user_001",
@@ -257,7 +257,7 @@ function initializeSampleData() {
             type: "user",
             createdAt: new Date().toISOString(),
         };
-        localStorage.setItem("bbc_clinic_user_demo", JSON.stringify(demoUser));
+        localStorage.setItem("PetSmart_clinic_user_demo", JSON.stringify(demoUser));
 
         // Sample pets for demo user
         const demoPets = [
@@ -292,7 +292,7 @@ function initializeSampleData() {
             },
         ];
         localStorage.setItem(
-            "bbc_clinic_pets_user_001",
+            "PetSmart_clinic_pets_user_001",
             JSON.stringify(demoPets)
         );
 
@@ -326,7 +326,7 @@ function initializeSampleData() {
             },
         ];
         localStorage.setItem(
-            "bbc_clinic_appointments_user_001",
+            "PetSmart_clinic_appointments_user_001",
             JSON.stringify(demoAppointments)
         );
 
@@ -353,7 +353,7 @@ function initializeSampleData() {
             },
         ];
         localStorage.setItem(
-            "bbc_clinic_health_records_user_001",
+            "PetSmart_clinic_health_records_user_001",
             JSON.stringify(demoHealthRecords)
         );
 
@@ -361,7 +361,7 @@ function initializeSampleData() {
         const demoInvoices = [
             {
                 id: "inv_001",
-                number: "BBC-2024-001",
+                number: "PetSmart-2024-001",
                 clientId: "user_001",
                 clientName: "John Smith",
                 petId: "pet_001",
@@ -397,7 +397,7 @@ function initializeSampleData() {
             },
         ];
         localStorage.setItem(
-            "bbc_clinic_invoices_user_001",
+            "PetSmart_clinic_invoices_user_001",
             JSON.stringify(demoInvoices)
         );
     }

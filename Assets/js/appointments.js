@@ -1,4 +1,4 @@
-// BBC Veterinary Clinic - Appointments Management Module
+// PetSmart Veterinary Clinic - Appointments Management Module
 
 // Render appointments page
 function renderAppointmentsPage() {
@@ -761,7 +761,7 @@ function updateAppointmentStatus(appointmentId, newStatus) {
     // Update the appointment in the owner's data
     const ownerAppointments = JSON.parse(
         localStorage.getItem(
-            `bbc_clinic_appointments_${appointment.ownerId}`
+            `PetSmart_clinic_appointments_${appointment.ownerId}`
         ) || "[]"
     );
     const appointmentIndex = ownerAppointments.findIndex(
@@ -771,7 +771,7 @@ function updateAppointmentStatus(appointmentId, newStatus) {
     if (appointmentIndex !== -1) {
         ownerAppointments[appointmentIndex].status = newStatus;
         localStorage.setItem(
-            `bbc_clinic_appointments_${appointment.ownerId}`,
+            `PetSmart_clinic_appointments_${appointment.ownerId}`,
             JSON.stringify(ownerAppointments)
         );
 
@@ -1025,7 +1025,7 @@ function handleEditAppointment(appointmentId) {
         if (appointment) {
             const ownerAppointments = JSON.parse(
                 localStorage.getItem(
-                    `bbc_clinic_appointments_${appointment.ownerId}`
+                    `PetSmart_clinic_appointments_${appointment.ownerId}`
                 ) || "[]"
             );
             const appointmentIndex = ownerAppointments.findIndex(
@@ -1042,7 +1042,7 @@ function handleEditAppointment(appointmentId) {
                     notes,
                 };
                 localStorage.setItem(
-                    `bbc_clinic_appointments_${appointment.ownerId}`,
+                    `PetSmart_clinic_appointments_${appointment.ownerId}`,
                     JSON.stringify(ownerAppointments)
                 );
             }
@@ -1169,7 +1169,7 @@ function loadClientPetsForNew() {
     petSelect.innerHTML = '<option value="">Select Pet</option>';
     if (clientId) {
         const clientPets = JSON.parse(
-            localStorage.getItem(`bbc_clinic_pets_${clientId}`) || "[]"
+            localStorage.getItem(`PetSmart_clinic_pets_${clientId}`) || "[]"
         );
         clientPets.forEach((pet) => {
             const option = document.createElement("option");
@@ -1197,7 +1197,7 @@ function handleNewAppointment() {
 
     const client = getAllClients().find((c) => c.id === clientId);
     const clientPets = JSON.parse(
-        localStorage.getItem(`bbc_clinic_pets_${clientId}`) || "[]"
+        localStorage.getItem(`PetSmart_clinic_pets_${clientId}`) || "[]"
     );
     const pet = clientPets.find((p) => p.id === petId);
 
@@ -1216,11 +1216,11 @@ function handleNewAppointment() {
     };
 
     const ownerAppointments = JSON.parse(
-        localStorage.getItem(`bbc_clinic_appointments_${clientId}`) || "[]"
+        localStorage.getItem(`PetSmart_clinic_appointments_${clientId}`) || "[]"
     );
     ownerAppointments.push(appointmentData);
     localStorage.setItem(
-        `bbc_clinic_appointments_${clientId}`,
+        `PetSmart_clinic_appointments_${clientId}`,
         JSON.stringify(ownerAppointments)
     );
 

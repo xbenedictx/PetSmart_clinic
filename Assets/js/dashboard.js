@@ -1,4 +1,4 @@
-// BBC Veterinary Clinic - Dashboard Module
+// PetSmart Veterinary Clinic - Dashboard Module
 
 // Render dashboard based on user type
 function renderDashboard() {
@@ -542,7 +542,7 @@ function loadUserUpcomingAppointments() {
 // Utility functions to get all data (for admin)
 function getAllClients() {
     const usersList = JSON.parse(
-        localStorage.getItem("bbc_clinic_users_list") || "[]"
+        localStorage.getItem("PetSmart_clinic_users_list") || "[]"
     );
     return usersList;
 }
@@ -553,7 +553,7 @@ function getAllPets() {
 
     usersList.forEach((user) => {
         const userPets = JSON.parse(
-            localStorage.getItem(`bbc_clinic_pets_${user.id}`) || "[]"
+            localStorage.getItem(`PetSmart_clinic_pets_${user.id}`) || "[]"
         );
         allPets.push(...userPets);
     });
@@ -567,7 +567,7 @@ function getAllAppointments() {
 
     usersList.forEach((user) => {
         const userAppointments = JSON.parse(
-            localStorage.getItem(`bbc_clinic_appointments_${user.id}`) || "[]"
+            localStorage.getItem(`PetSmart_clinic_appointments_${user.id}`) || "[]"
         );
         allAppointments.push(...userAppointments);
     });
@@ -581,7 +581,7 @@ function getAllInvoices() {
 
     usersList.forEach((user) => {
         const userInvoices = JSON.parse(
-            localStorage.getItem(`bbc_clinic_invoices_${user.id}`) || "[]"
+            localStorage.getItem(`PetSmart_clinic_invoices_${user.id}`) || "[]"
         );
         allInvoices.push(...userInvoices);
     });

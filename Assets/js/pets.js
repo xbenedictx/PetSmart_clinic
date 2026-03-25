@@ -1,4 +1,4 @@
-// BBC Veterinary Clinic - Pets Management Module
+// PetSmart Veterinary Clinic - Pets Management Module
 
 // Render pets page
 function renderPetsPage() {
@@ -445,7 +445,7 @@ function handleAddPet(event) {
                 showAlert("Pet not found", "danger");
                 return;
             }
-            storageKey = `bbc_clinic_pets_${petToUpdate.ownerId}`;
+            storageKey = `PetSmart_clinic_pets_${petToUpdate.ownerId}`;
         } else {
             const index = AppState.pets.findIndex((p) => p.id === petId);
             if (index === -1) {
@@ -453,7 +453,7 @@ function handleAddPet(event) {
                 return;
             }
             petToUpdate = AppState.pets[index];
-            storageKey = `bbc_clinic_pets_${AppState.currentUser.id}`;
+            storageKey = `PetSmart_clinic_pets_${AppState.currentUser.id}`;
         }
 
         // Update only changed fields (preserve original id, createdAt, etc.)
@@ -509,11 +509,11 @@ function handleAddPet(event) {
 
         if (AppState.userType === "admin") {
             const ownerPets = JSON.parse(
-                localStorage.getItem(`bbc_clinic_pets_${ownerId}`) || "[]"
+                localStorage.getItem(`PetSmart_clinic_pets_${ownerId}`) || "[]"
             );
             ownerPets.push(newPet);
             localStorage.setItem(
-                `bbc_clinic_pets_${ownerId}`,
+                `PetSmart_clinic_pets_${ownerId}`,
                 JSON.stringify(ownerPets)
             );
         } else {
@@ -748,11 +748,11 @@ function deletePet(petId) {
         if (AppState.userType === "admin") {
             // Remove from owner's pets
             const ownerPets = JSON.parse(
-                localStorage.getItem(`bbc_clinic_pets_${pet.ownerId}`) || "[]"
+                localStorage.getItem(`PetSmart_clinic_pets_${pet.ownerId}`) || "[]"
             );
             const updatedPets = ownerPets.filter((p) => p.id !== petId);
             localStorage.setItem(
-                `bbc_clinic_pets_${pet.ownerId}`,
+                `PetSmart_clinic_pets_${pet.ownerId}`,
                 JSON.stringify(updatedPets)
             );
         } else {
